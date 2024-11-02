@@ -30,37 +30,57 @@ function drawMatrix() {
 
 setInterval(drawMatrix, 50);
 
+// Store added wallet addresses
+let addedWallets = [];
+
 // Enhanced mock wallet data
 const walletDataMock = {
-  transactions: [
-    { time: "2024-11-01 14:23", action: "BUY", item: "Bitcoin", amount: "0.5 BTC", price: "$34,000", fee: "$10", balance: "1.5 BTC" },
-    { time: "2024-11-01 13:45", action: "SELL", item: "Ethereum", amount: "1.2 ETH", price: "$2,000", fee: "$5", balance: "3 ETH" },
-    { time: "2024-11-01 12:10", action: "BUY", item: "Cardano", amount: "300 ADA", price: "$1.20", fee: "$0.50", balance: "500 ADA" }
-  ]
+  "wallet1": {
+    transactions: [
+      { time: "2024-11-01 14:23", action: "BUY", item: "Bitcoin", amount: "0.5 BTC", price: "$34,000", fee: "$10", balance: "1.5 BTC" },
+      { time: "2024-11-01 13:45", action: "SELL", item: "Ethereum", amount: "1.2 ETH", price: "$2,000", fee: "$5", balance: "3 ETH" }
+    ]
+  },
+  "wallet2": {
+    transactions: [
+      { time: "2024-11-01 12:10", action: "BUY", item: "Cardano", amount: "300 ADA", price: "$1.20", fee: "$0.50", balance: "500 ADA" },
+      { time: "2024-11-01 11:00", action: "SELL", item: "Litecoin", amount: "2 LTC", price: "$180", fee: "$1", balance: "10 LTC" }
+    ]
+  }
 };
 
-// Fetch wallet data function
-function fetchWalletData() {
+// Add wallet function
+function addWallet() {
   const walletAddress = document.getElementById("wallet-address").value;
-  const outputBox = document.getElementById("wallet-data");
-
   if (walletAddress) {
-    outputBox.innerHTML = `<p>Fetching data for wallet: ${walletAddress}...</p>`;
-    
-    // Simulate a delay for fetching data
-    setTimeout(() => {
-      displayWalletData(walletDataMock);
-    }, 1000);
+    addedWallets.push(walletAddress);
+    document.getElementById("added-wallets").innerHTML += `<p>${walletAddress}</p>`;
+    document.getElementById("wallet-address").value = ""; // Clear input
   } else {
     alert("Please enter a wallet address.");
   }
 }
 
+// Fetch wallet data function
+function fetchWalletData(walletAddress) {
+  const outputBox = document.getElementById("wallet-data");
+  outputBox.innerHTML += `<p>Fetching data for wallet: ${walletAddress}...</p>`;
+  
+  // Simulate a delay for fetching data
+  setTimeout(() => {
+    displayWalletData(walletDataMock[walletAddress]);
+  }, 1000);
+}
+
 // Display wallet data with complex transaction information
 function displayWalletData(data) {
   const outputBox = document.getElementById("wallet-data");
-  outputBox.innerHTML = "<h2>Transaction History</h2>";
+  if (!data) {
+    outputBox.innerHTML += "<p>No data found for this wallet.</p>";
+    return;
+  }
 
+  outputBox.innerHTML += "<h2>Transaction History</h2>";
   data.transactions.forEach(transaction => {
     const transactionElement = document.createElement("div");
     transactionElement.style.marginBottom = "10px";
@@ -80,19 +100,29 @@ function displayWalletData(data) {
     `;
     outputBox.appendChild(transactionElement);
   });
+}
 
-  // Display buy/sell recommendation based on the latest transaction
-  const recommendation = document.createElement("h3");
-  recommendation.innerText = "Recommendation: ";
-  const latestTransaction = data.transactions[0];
+// Compare wallets function
+function compareWallets() {
+  const comparisonBox = document.getElementById("comparison-data");
+  comparisonBox.innerHTML = "<h2>Wallet Comparison</h2>";
 
-  if (latestTransaction.action === "BUY") {
-    recommendation.innerText += "BUY";
-    recommendation.style.color = "green";
-  } else {
-    recommendation.innerText += "SELL";
-    recommendation.style.color = "red";
-  }
+  addedWallets.forEach(walletAddress => {
+    fetchWalletData(walletAddress);
+  });
 
-  outputBox.appendChild(recommendation);
+  // Simple comparison logic
+  setTimeout(() => {
+    const walletCounts = addedWallets.map(wallet => {
+      const data = walletDataMock[wallet];
+      return { wallet, count: data ? data.transactions.length : 0 };
+    });
+
+    walletCounts.sort((a, b) => b.count - a.count); // Sort by number of transactions
+
+    const bestWallet = walletCounts[0];
+    const recommendation = document.createElement("p");
+    recommendation.innerHTML = `Follow transactions from: <strong>${bestWallet.wallet}</strong> with ${bestWallet.count} transactions.`;
+    comparisonBox.appendChild(recommendation);
+  }, 2000);
 }
