@@ -30,12 +30,12 @@ function drawMatrix() {
 
 setInterval(drawMatrix, 50);
 
-// Mock wallet data with details about what was bought or sold
+// Enhanced mock wallet data
 const walletDataMock = {
   transactions: [
-    { time: "2024-11-01 14:23", action: "BUY", item: "Bitcoin", amount: "0.5 BTC" },
-    { time: "2024-11-01 13:45", action: "SELL", item: "Ethereum", amount: "1.2 ETH" },
-    { time: "2024-11-01 12:10", action: "BUY", item: "Cardano", amount: "300 ADA" }
+    { time: "2024-11-01 14:23", action: "BUY", item: "Bitcoin", amount: "0.5 BTC", price: "$34,000", fee: "$10", balance: "1.5 BTC" },
+    { time: "2024-11-01 13:45", action: "SELL", item: "Ethereum", amount: "1.2 ETH", price: "$2,000", fee: "$5", balance: "3 ETH" },
+    { time: "2024-11-01 12:10", action: "BUY", item: "Cardano", amount: "300 ADA", price: "$1.20", fee: "$0.50", balance: "500 ADA" }
   ]
 };
 
@@ -56,13 +56,14 @@ function fetchWalletData() {
   }
 }
 
-// Display wallet data with detailed transaction information
+// Display wallet data with complex transaction information
 function displayWalletData(data) {
   const outputBox = document.getElementById("wallet-data");
   outputBox.innerHTML = "<h2>Transaction History</h2>";
 
   data.transactions.forEach(transaction => {
-    const transactionElement = document.createElement("p");
+    const transactionElement = document.createElement("div");
+    transactionElement.style.marginBottom = "10px";
 
     // Style "BUY" as green and "SELL" as red
     const actionColor = transaction.action === "BUY" ? "green" : "red";
@@ -70,8 +71,12 @@ function displayWalletData(data) {
 
     transactionElement.innerHTML = `
       <span style="color: ${actionColor}; font-weight: bold;">${actionText}</span> - 
-      ${transaction.time} - 
-      ${transaction.item}: ${transaction.amount}
+      ${transaction.time} <br>
+      <strong>Item:</strong> ${transaction.item} <br>
+      <strong>Amount:</strong> ${transaction.amount} <br>
+      <strong>Price:</strong> ${transaction.price} <br>
+      <strong>Fee:</strong> ${transaction.fee} <br>
+      <strong>Wallet Balance:</strong> ${transaction.balance} <br>
     `;
     outputBox.appendChild(transactionElement);
   });
