@@ -3,7 +3,6 @@ body {
   font-family: 'Courier New', Courier, monospace;
   background-color: black;
   color: #00ff00;
-  overflow: hidden; /* Prevent scrolling */
 }
 
 h1, h2 {
@@ -14,7 +13,7 @@ h1, h2 {
   position: relative;
   z-index: 1;
   padding: 20px;
-  height: 100vh; /* Full height to ensure space for scrolling */
+  height: 100vh; /* Full height */
   overflow-y: auto; /* Allow vertical scrolling */
 }
 
@@ -77,7 +76,7 @@ h1, h2 {
   background-color: rgba(0, 0, 0, 0.8);
   padding: 15px;
   border-radius: 5px;
-  max-height: 300px; /* Limit height for scrolling */
+  max-height: 400px; /* Increased height for scrolling */
   overflow-y: auto; /* Allow vertical scrolling */
 }
 
@@ -85,7 +84,6 @@ h1, h2 {
   margin-top: 20px;
   background-color: rgba(0, 0, 0, 0.8);
   padding: 15px;
-  border-radius: 5px;
 }
 
 /* Add any additional styles you have here */
