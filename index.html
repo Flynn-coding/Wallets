@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wallet Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="background-animation"></div>
+
+  <div class="container">
+    <h1>Wallet Tracker</h1>
+    <div class="input-box">
+      <input type="text" id="wallet-address" placeholder="Enter Wallet Address">
+      <button onclick="fetchWalletData()">Track Wallet</button>
+    </div>
+    <div class="output-box" id="wallet-data">
+      <!-- Wallet data will be displayed here -->
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
