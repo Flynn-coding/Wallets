@@ -125,4 +125,7 @@ function displayWalletData(data) {
       <span style="color: ${actionColor}; font-weight: bold;">${actionText}</span> - 
       ${transaction.time} <br>
       <strong>Item:</strong> ${transaction.item} <br>
-      <
+      <strong>Amount:</strong> ${transaction.amount} <br>
+      <strong>Price:</strong> ${transaction.price} <br>
+      <strong>Fee:</strong> ${transaction.fee} <br>
+      <strong>Balance:</strong
