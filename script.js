@@ -136,24 +136,4 @@ function displayWalletData(data) {
 // Compare wallets function
 function compareWallets() {
   const comparisonBox = document.getElementById("comparison-data");
-  comparisonBox.innerHTML = "<h2>Wallet Comparison</h2>";
-
-  addedWallets.forEach(walletAddress => {
-    fetchWalletData(walletAddress);
-  });
-
-  // Simple comparison logic
-  setTimeout(() => {
-    const walletCounts = addedWallets.map(wallet => {
-      const data = walletDataMock[wallet];
-      return { wallet, count: data ? data.transactions.length : 0 };
-    });
-
-    walletCounts.sort((a, b) => b.count - a.count); // Sort by number of transactions
-
-    const bestWallet = walletCounts[0];
-    const recommendation = document.createElement("p");
-    recommendation.innerHTML = `Follow transactions from: <strong>${bestWallet.wallet}</strong> with ${bestWallet.count} transactions.`;
-    comparisonBox.appendChild(recommendation);
-  }, 2000);
-}
+  comparisonBox.innerHTML = "<h2>Wallet
