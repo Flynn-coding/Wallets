@@ -1,0 +1,81 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Background matrix effect */
+#background-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  overflow: hidden;
+  z-index: -1;
+}
+
+@keyframes matrixEffect {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+.matrix-text {
+  color: #00ff00;
+  font-family: monospace;
+  opacity: 0.3;
+  font-size: 16px;
+  animation: matrixEffect linear infinite;
+}
+
+/* Container and boxes */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: #00ff00;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.input-box {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  padding: 8px;
+  margin-right: 10px;
+  border: 1px solid #00ff00;
+  background: black;
+  color: #00ff00;
+}
+
+button {
+  padding: 8px 16px;
+  background-color: #00ff00;
+  color: black;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #009900;
+}
+
+.output-box {
+  padding: 20px;
+  border: 1px solid #00ff00;
+  width: 80%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #00ff00;
+  font-family: monospace;
+}
