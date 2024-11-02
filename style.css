@@ -5,32 +5,32 @@
   box-sizing: border-box;
 }
 
-/* Background matrix effect */
-#background-animation {
+/* Matrix Effect Canvas */
+#matrix-canvas {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background: black;
-  overflow: hidden;
   z-index: -1;
 }
 
-@keyframes matrixEffect {
-  0% { transform: translateY(-100%); }
-  100% { transform: translateY(100%); }
+/* Title Overlay */
+.title-overlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 4em;
+  font-weight: bold;
+  z-index: 1;
+  text-align: center;
+  opacity: 0.9;
 }
 
-.matrix-text {
-  color: #00ff00;
-  font-family: monospace;
-  opacity: 0.3;
-  font-size: 16px;
-  animation: matrixEffect linear infinite;
-}
-
-/* Container and boxes */
+/* Container and Content Styling */
 .container {
   display: flex;
   flex-direction: column;
@@ -38,10 +38,14 @@
   justify-content: center;
   height: 100vh;
   color: #00ff00;
+  z-index: 2;
+  margin-top: 100px;
 }
 
-h1 {
+h2 {
   margin-bottom: 20px;
+  font-size: 2em;
+  color: #00ff00;
 }
 
 .input-box {
