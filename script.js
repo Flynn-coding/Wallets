@@ -128,14 +128,3 @@ function displayWalletData(data) {
       <strong>Amount:</strong> ${transaction.amount} <br>
       <strong>Price:</strong> ${transaction.price} <br>
       <strong>Fee:</strong> ${transaction.fee} <br>
-      <strong>Balance:</strong> ${transaction.balance} <br>
-    `;
-    outputBox.appendChild(transactionElement);
-  });
-}
-
-// Compare wallets function (stub)
-function compareWallets() {
-  const comparisonData = document.getElementById("comparison-data");
-  comparisonData.innerHTML = `<h2>Comparing Wallets:</h2><p>This feature is not yet implemented.</p>`;
-}
