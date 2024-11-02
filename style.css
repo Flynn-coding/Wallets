@@ -13,7 +13,7 @@ h1, h2 {
   position: relative;
   z-index: 1;
   padding: 20px;
-  height: 100vh; /* Full height */
+  height: calc(100vh - 100px); /* Adjust for title and allow for scrolling */
   overflow-y: auto; /* Allow vertical scrolling */
 }
 
@@ -76,7 +76,7 @@ h1, h2 {
   background-color: rgba(0, 0, 0, 0.8);
   padding: 15px;
   border-radius: 5px;
-  max-height: 400px; /* Increased height for scrolling */
+  max-height: 300px; /* Increased height for scrolling */
   overflow-y: auto; /* Allow vertical scrolling */
 }
 
@@ -85,5 +85,3 @@ h1, h2 {
   background-color: rgba(0, 0, 0, 0.8);
   padding: 15px;
 }
-
-/* Add any additional styles you have here */
