@@ -83,3 +83,13 @@ button:hover {
   color: #00ff00;
   font-family: monospace;
 }
+
+.comparison-box {
+  padding: 20px;
+  border: 1px solid #00ff00;
+  width: 80%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #00ff00;
+  font-family: monospace;
+  margin-top: 20px;
+}
