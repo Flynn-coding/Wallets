@@ -54,7 +54,7 @@ function addWallet() {
   const walletAddress = document.getElementById("wallet-address").value;
   if (walletAddress && !addedWallets.includes(walletAddress)) {
     addedWallets.push(walletAddress);
-    fetchWalletData(walletAddress); // Fetch data immediately upon adding
+    fetchWalletData(walletAddress); // Fetch data immediately when added
     updateWalletDisplay();
     document.getElementById("wallet-address").value = ""; // Clear input
     checkCompareButton();
@@ -90,7 +90,7 @@ function removeWallet(walletAddress) {
 // Check if the compare button should be enabled
 function checkCompareButton() {
   const compareButton = document.getElementById("compare-button");
-  compareButton.disabled = addedWallets.length < 2;
+  compareButton.disabled = addedWallets.length < 2; // Enable if two or more wallets
 }
 
 // Fetch wallet data function
@@ -125,4 +125,4 @@ function displayWalletData(data) {
       <span style="color: ${actionColor}; font-weight: bold;">${actionText}</span> - 
       ${transaction.time} <br>
       <strong>Item:</strong> ${transaction.item} <br>
-      <strong>Amount:</strong> ${transaction.amount} <br>
+      <
