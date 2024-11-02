@@ -52,13 +52,44 @@ const walletDataMock = {
 // Add wallet function
 function addWallet() {
   const walletAddress = document.getElementById("wallet-address").value;
-  if (walletAddress) {
+  if (walletAddress && !addedWallets.includes(walletAddress)) {
     addedWallets.push(walletAddress);
-    document.getElementById("added-wallets").innerHTML += `<p>${walletAddress}</p>`;
+    updateWalletDisplay();
     document.getElementById("wallet-address").value = ""; // Clear input
+    checkCompareButton();
+  } else if (addedWallets.includes(walletAddress)) {
+    alert("This wallet is already added.");
   } else {
     alert("Please enter a wallet address.");
   }
+}
+
+// Update wallet display
+function updateWalletDisplay() {
+  const walletDisplay = document.getElementById("added-wallets");
+  walletDisplay.innerHTML = ''; // Clear previous display
+  addedWallets.forEach(wallet => {
+    const walletItem = document.createElement("div");
+    walletItem.className = "wallet-item";
+    walletItem.innerHTML = `
+      ${wallet} 
+      <button class="remove-button" onclick="removeWallet('${wallet}')">Remove</button>
+    `;
+    walletDisplay.appendChild(walletItem);
+  });
+}
+
+// Remove wallet function
+function removeWallet(walletAddress) {
+  addedWallets = addedWallets.filter(wallet => wallet !== walletAddress);
+  updateWalletDisplay();
+  checkCompareButton();
+}
+
+// Check if the compare button should be enabled
+function checkCompareButton() {
+  const compareButton = document.getElementById("compare-button");
+  compareButton.disabled = addedWallets.length !== 2;
 }
 
 // Fetch wallet data function
