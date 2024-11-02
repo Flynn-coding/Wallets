@@ -93,3 +93,29 @@ button:hover {
   font-family: monospace;
   margin-top: 20px;
 }
+
+.added-wallets {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.wallet-item {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #00ff00;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.remove-button {
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  margin-left: 10px;
+  cursor: pointer;
+}
